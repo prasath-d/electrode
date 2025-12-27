@@ -2124,8 +2124,12 @@ static int axis2tuple(
     if (PyString_Check(axes) && (PyString_Size(axes) == 4)) {
         char *s = PyString_AS_STRING(axes);
 #else
-    if (PyUnicode_Check(axes) && (PyUnicode_GetSize(axes) == 4)) {
-        char *s = PyBytes_AsString(PyUnicode_AsASCIIString(axes));
+    if (PyUnicode_Check(axes) && (PyUnicode_GetLength(axes) == 4)) {
+        const char *s = PyUnicode_AsUTF8(axes);
+        if (s == NULL) {
+            PyErr_Format(PyExc_ValueError, "invalid axes string encoding");
+            return -1;
+        }
 #endif
         int hash = *((int *)s);
         switch (hash)
