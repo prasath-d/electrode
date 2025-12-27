@@ -43,14 +43,13 @@ setup(
         author_email = "jordens@gmail.com",
         url = "http://github.com/nist-ionstorage/electrode",
         description = "toolkit to develop and analyze rf surface ion traps",
-        license = "GPLv3+",
+        license = "GPL-3.0-or-later",
         python_requires = ">=3.6",
         long_description = long_description,
         long_description_content_type = 'text/x-rst',
         classifiers=[
             "Programming Language :: Python :: 3",
             "Programming Language :: Python :: 3 :: Only",
-            "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
             "Operating System :: OS Independent",
         ],
         install_requires = [

@@ -119,6 +119,21 @@ Notes:
   This produces `dist/` with an sdist and wheels you can upload to PyPI or
   use in private package indexes.
 
+  Uploading to PyPI / test.pypi
+  -----------------------------
+
+  After building, use `twine` to upload distributions. For test uploads:
+
+    $ python -m pip install --upgrade twine
+    $ python -m twine upload --repository testpypi dist/*
+
+  To upload to PyPI (requires `TWINE_USERNAME`/`TWINE_PASSWORD` or API token):
+
+    $ python -m twine upload dist/*
+
+  When using CI, add PyPI credentials as repository secrets and run the
+  upload step only on tagged releases.
+
 Obsolete / legacy items
 -----------------------
 
