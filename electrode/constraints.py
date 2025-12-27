@@ -140,7 +140,7 @@ class VoltageConstraint(Constraint):
 
 
 class SymmetryConstraint(SingleIndexConstraint):
-    symmetry = Array(dtype=np.int, shape=(None, 2)) # variable mapping
+    symmetry = Array(dtype=int, shape=(None, 2)) # variable mapping
     weight = 0.
     equal = True
 

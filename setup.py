@@ -25,6 +25,16 @@ from setuptools import setup, find_packages, Extension
 from Cython.Distutils import build_ext
 from glob import glob
 import numpy
+import io
+import os
+
+# read long description from README if present
+here = os.path.abspath(os.path.dirname(__file__))
+readme_path = os.path.join(here, 'README.rst')
+long_description = ''
+if os.path.exists(readme_path):
+    with io.open(readme_path, encoding='utf8') as f:
+        long_description = f.read()
 
 setup(
         name = "electrode",
@@ -33,38 +43,16 @@ setup(
         author_email = "jordens@gmail.com",
         url = "http://github.com/nist-ionstorage/electrode",
         description = "toolkit to develop and analyze rf surface ion traps",
-        long_description = 
-"""Electrode is a toolkit to develop and analyze RF ion traps. It can
-optimize 2D surface electrode patterns to achieve desired trapping
-properties and extract relevant parameters of the resulting geometry.
-The software also treats precomputed 3D volumetric field and potential
-data transparently.
-
-See also:
-
-[1] Roman Schmied <roman.schmied@unibas.ch>, SurfacePattern software
-package.
-http://atom.physik.unibas.ch/people/romanschmied/code/SurfacePattern.php
-
-[2] Roman Schmied: Electrostatics of gapped and finite surface
-electrodes. New Journal of Physics 12:023038 (2010).
-http://dx.doi.org/10.1088/1367-2630/12/2/023038
-
-[3] Roman Schmied, Janus H. Wesenberg, and Dietrich Leibfried: Optimal
-Surface-Electrode Trap Lattices for Quantum Simulation with Trapped
-Ions. Physical Review Letters 102:233002 (2009).
-http://dx.doi.org/10.1103/PhysRevLett.102.233002
-
-[4] A. van Oosterom and J. Strackee: The Solid Angle of a Plane
-Triangle, IEEE Transactions on Biomedical Engineering, vol. BME-30, no.
-2, pp. 125-126. (1983)
-http://dx.doi.org/10.1109/TBME.1983.325207
-
-[5] Mário H. Oliveira and José A. Miranda: Biot–Savart-like law in
-electrostatics. European Journal of Physics 22:31 (2001).
-http://dx.doi.org/10.1088/0143-0807/22/1/304
-""",
         license = "GPLv3+",
+        python_requires = ">=3.6",
+        long_description = long_description,
+        long_description_content_type = 'text/x-rst',
+        classifiers=[
+            "Programming Language :: Python :: 3",
+            "Programming Language :: Python :: 3 :: Only",
+            "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+            "Operating System :: OS Independent",
+        ],
         install_requires = [
             "numpy", "scipy", "nose", "cython", "sphinx",
             "numpydoc"],

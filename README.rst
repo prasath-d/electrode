@@ -74,28 +74,42 @@ Use e.g.:
 
     $ PYTHONPATH=. python your_script.py
 
-to run a script without instaling the electrode package.
+to run a script without installing the `electrode` package.
 
+Installation
+============
 
-Keeping the package files editable
-..................................
+Using pip (recommended)
+------------------------
 
-    # python setup.py develop
+For modern Python and pip (PEP 517 build), install from the project root:
 
-installs the package into your python tree such that it can be imported
-from any script anywhere on your system. It only creates links from
-your python tree to this development tree and changes in the package
-immediately become visible.
+    $ python -m pip install .
 
+To install in editable/development mode so changes in this directory take
+effect immediately:
 
-Full installation
-.................
+    $ python -m pip install -e .
 
-    # python setup.py install
+Notes:
 
-installs the package in your python tree by copying and compiling the
-files. After this, changes to the package files in this development tree
-become only visible if you install the package again.
+- This project provides a `pyproject.toml` so pip can install build-time
+  dependencies (Cython, numpy) required to build the C extension.
+- Building the optional C extension (`electrode._transformations`) requires
+  a working C compiler and the development headers for Python and NumPy.
+
+Legacy setup.py commands
+------------------------
+
+If you prefer the legacy setuptools workflow you can still use:
+
+    $ python setup.py develop
+
+or
+
+    $ python setup.py install
+
+but the `pip` workflow above is recommended for reproducible builds.
 
 
 Runing the notebooks
