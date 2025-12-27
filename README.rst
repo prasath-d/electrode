@@ -46,15 +46,29 @@ http://dx.doi.org/10.1088/0143-0807/22/1/304
 Dependencies
 ============
 
-Debian based GNU/Linuxes
+Python (recommended)
+---------------------
+
+Install required packages with pip; optional features are available
+via extras. Example:
+
+  $ python -m pip install .
+  $ python -m pip install .[polygons,visualization]
+
+Available extras (as defined in setup):
+
+- `notebooks` — dependencies for running the tutorial notebooks (IPython/Jupyter)
+- `optimization` — `cvxopt` for optimization routines
+- `visualization` — `matplotlib`, `mayavi` for plotting
+- `polygons` — `shapely` for polygon utilities
+
+Debian packages (legacy)
 ------------------------
 
-    # apt-get install python-cvxopt python-numpy python-matplotlib \
-                      python-scipy python-traits python-shapely
-
-to use the ipython based notebooks, try
-
-    # apt-get install ipython-notebook
+The repository contains a `debian/` directory with Debian packaging
+metadata from earlier releases. This is provided for historical and
+packaging reference only — prefer the pip workflow above for
+development and distribution.
 
 
 Usage
@@ -97,6 +111,23 @@ Notes:
   dependencies (Cython, numpy) required to build the C extension.
 - Building the optional C extension (`electrode._transformations`) requires
   a working C compiler and the development headers for Python and NumPy.
+- To build wheels for distribution locally:
+
+    $ python -m pip install --upgrade build
+    $ python -m build
+
+  This produces `dist/` with an sdist and wheels you can upload to PyPI or
+  use in private package indexes.
+
+Obsolete / legacy items
+-----------------------
+
+- The `debian/` directory is legacy Debian packaging metadata — kept for
+  reference and may be removed if you do not build Debian packages.
+- The project previously used `.travis.yml` for CI; modern CI should use
+  GitHub Actions. The Travis configuration in the repository is obsolete.
+- Legacy `setup.py install` and `python setup.py develop` are supported
+  but the `pip` workflow is recommended.
 
 Legacy setup.py commands
 ------------------------
