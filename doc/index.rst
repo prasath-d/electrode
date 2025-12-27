@@ -7,6 +7,7 @@ Contents:
     :maxdepth: 3
     
     intro
+    packaging_note
     electrode
 
     

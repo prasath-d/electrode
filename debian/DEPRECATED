@@ -1,0 +1,6 @@
+This directory contains legacy Debian packaging configuration for the
+electrode project. The project now uses a PEP 517 build (`pyproject.toml`)
+and pip-based installation is preferred. You can remove or ignore this
+directory unless you specifically need to build Debian packages.
+
+Files here are kept for reference only.
